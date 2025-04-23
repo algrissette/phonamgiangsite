@@ -3,6 +3,7 @@
 :root {
     --color-primary: #F7EAC6;
     --color-secondary: #393939;
+    --color-tertiary: #fffdf8;
 }
 
 .dm-serif-text-regular {
@@ -16,13 +17,70 @@
     font-weight: 400;
     font-style: italic;
 }
+.bg-primary{
+    background-color: var(--color-primary);
+}
+.bg-secondary{
+    background-color: var(--color-secondary);
+}
 
+.bg-tertiary{
+    background-color: var(--color-tertiary);
+}
 body {
     box-sizing: border-box;
     font-family: sans-serif;
-    color: white;
+    color: black;
     font-size: 1rem;
     /* default is 16px */
     scroll-behavior: smooth;
 }
 
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(1deg); }
+  }
+  .animate-wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  .clip-banner {
+    clip-path: polygon(
+      0 0, 
+      100% 0, 
+      100% 80%, 
+      75% 90%, 
+      60% 100%, 
+      40% 100%, 
+      25% 90%, 
+      0 80%
+    );
+  }
+  
+  .text-primary {
+    color: var(--color-primary);
+}
+.text-secondary {
+    color: var(--color-secondary);
+}
+.text-tertiary {
+    color: var(--color-tertiary);
+}
