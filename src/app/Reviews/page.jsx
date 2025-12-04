@@ -8,12 +8,23 @@ import Footer from "@/components/Home/footer";
 
 const platformReviews = [
   {
+    platform: "Yelp",
+    reviews: [
+      {
+        name: "Alice L.",
+        photo: "/Images/Reviews/Alice.jpg",
+        text: "i got the house special pho (pho dac biet) and it did not disappoint. the broth was super flavorful and the bowl was packed with meat. service was fast, and everyone was super friendly! the restaurant was homey and had plenty of seating. honesty, i was surprised that there weren't more customers.",
+        stars: 5,
+      },
+    ],
+  },
+  {
     platform: "Google",
     reviews: [
       {
-        name: "Jason N.",
-        photo: "/images/google1.jpg",
-        text: "Best pho in the city, hands down.",
+        name: "Caroline L",
+        photo: "/Images/Reviews/Caroline.png",
+        text: "Super yummy rice vermicelli bun marinated grill stuff, pho and shrimp tempura.",
         stars: 5,
       },
     ],
@@ -22,20 +33,9 @@ const platformReviews = [
     platform: "Yelp",
     reviews: [
       {
-        name: "Emma W.",
-        photo: "/images/yelp1.jpg",
-        text: "Love the crispy banh mi and amazing service!",
-        stars: 4,
-      },
-    ],
-  },
-  {
-    platform: "Grubhub",
-    reviews: [
-      {
-        name: "Tina K.",
-        photo: "/images/grubhub1.jpg",
-        text: "Fast delivery and still piping hot. Love it!",
+        name: "Danielle A.",
+        photo: "/Images/Reviews/Danielle.jpg",
+        text: " As for my dish, It was a thing of dreams. Flavorful, salted properly. The rice was fresh. the little veggies on the side almost didn't make it back up I95. All in all this was a great restaurant & well worth the trip.",
         stars: 5,
       },
     ],
@@ -64,7 +64,7 @@ const Reviews = () => {
             {/* Review Bubble 1 */}
             <div className="flex items-start gap-4">
               <Image
-                src="/images/profile1.jpg"
+                src="/Images/Reviews/Michelle.jpg"
                 alt="Customer review"
                 width={80}
                 height={80}
@@ -74,7 +74,7 @@ const Reviews = () => {
                 <div className="absolute top-1/2 -left-3 w-0 h-0 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent border-r-[12px] border-r-secondary -translate-y-1/2"></div>
                 <div className="absolute top-1/2 -left-[10px] w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[10px] border-r-white -translate-y-1/2"></div>
                 <p className="text-base md:text-lg leading-relaxed">
-                  "The <strong>noodle texture</strong> was perfect and the <strong>broth was heavenly</strong>. I'll be back weekly."
+                  Fried pork dumplings were also good. Really <strong> crispy</strong> and <strong> juicy</strong> .
                 </p>
               </div>
             </div>
@@ -82,7 +82,7 @@ const Reviews = () => {
             {/* Review Bubble 2 */}
             <div className="flex items-start gap-4">
               <Image
-                src="/images/profile2.jpg"
+                src="/Images/Reviews/Tamara.jpg"
                 alt="Customer review"
                 width={80}
                 height={80}
@@ -92,7 +92,7 @@ const Reviews = () => {
                 <div className="absolute top-1/2 -left-3 w-0 h-0 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent border-r-[12px] border-r-secondary -translate-y-1/2"></div>
                 <div className="absolute top-1/2 -left-[10px] w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[10px] border-r-white -translate-y-1/2"></div>
                 <p className="text-base md:text-lg leading-relaxed">
-                  "<strong>Huge portions</strong> for the price and the <strong>staff made me feel like family</strong>."
+                  The restaurant just opened up in our area, we have been waiting! <strong>They did not disappoint!!!  </strong>The dining area is beautiful and feels very relaxing. The food was amazing, fresh and delicious. I highly recommend <strong> AAAAAAAAA  </strong>
                 </p>
               </div>
             </div>
