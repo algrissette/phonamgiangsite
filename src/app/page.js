@@ -9,20 +9,19 @@ import InfoFour from "@/components/Home/info-four";
 import Footer from "@/components/Home/footer";
 
 const Home = () => {
-    return ( <div >
-      
+    return (<div >
+
         <Navbar />
         <Hero />
-        <InfoOne/>
-        <SocialMedia/>
-        <InfoTwo/>
-        <InfoThree/>
-        <InfoFour/>
-        <Footer/>
-       
+        <InfoOne />
+        <InfoTwo />
+        <InfoThree />
+        <InfoFour />
+        <Footer />
 
-       
-        </div>
+
+
+    </div>
     );
 };
 

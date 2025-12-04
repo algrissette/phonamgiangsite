@@ -1,44 +1,32 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+import Papa from 'papaparse';
 
 export async function GET() {
-  const menuItems = [
-    { 
-      id: 1, 
-      name: "Pho Tai", 
-      price: 12.99, 
-      description: "Rare beef slices with rice noodles in savory beef broth.", 
-      category: "Pho" 
-    },
-    { 
-      id: 2, 
-      name: "Pho Ga", 
-      price: 11.99, 
-      description: "Tender chicken breast with rice noodles in aromatic chicken broth.", 
-      category: "Pho" 
-    },
-    { 
-      id: 3, 
-      name: "Banh Mi Thit", 
-      price: 8.99, 
-      description: "Vietnamese baguette sandwich with pork, pickled vegetables, and herbs.", 
-      category: "Banh Mi" 
-    },
-    { 
-      id: 4, 
-      name: "Spring Rolls", 
-      price: 6.49, 
-      description: "Fresh shrimp and pork rolls with vermicelli, lettuce, and mint wrapped in rice paper. Served with peanut sauce.", 
-      category: "Khai Vi" 
-    },
-    { 
-      id: 5, 
-      name: "Vermicelli Bowl", 
-      price: 13.49, 
-      description: "Grilled pork with vermicelli noodles, fresh herbs, and nuoc cham dipping sauce.", 
-      category: "Bun" 
-    },
-    // You can add more items here!
-  ];
+  try {
+    // Get full path to CSV in public folder
+    const filePath = path.join(process.cwd(), 'public', 'menu.csv');
+    console.log(" my filepath", filePath)
 
-  return NextResponse.json(menuItems);
+    // Read CSV file as string
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+
+    // Parse CSV
+    const parsed = Papa.parse(fileContent, {
+      header: true,      // Treat first row as header
+      skipEmptyLines: true,
+    });
+
+    // Optional: convert price strings to numbers
+    const menuItems = parsed.data.map(item => ({
+      ...item,
+      price: parseFloat(item.price.replace('$', '')) || 0,
+    }));
+    console.log("myyyyyy menu", menuItems)
+    return NextResponse.json(menuItems);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: 'Failed to load menu' }, { status: 500 });
+  }
 }

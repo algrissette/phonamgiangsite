@@ -1,14 +1,13 @@
 /* Show nothing by default */
 .hero-background {
-background-color: black; 
-   background-size: cover;
-    background-position: center;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Show it only on small screens and up (≥640px) */
+@media (min-width: 640px) {
+  .hero-background {
+    background-image: url(/Images/Home/Pho-nam-giang-landing-image.avif);
   }
-  
-  /* Show it only on small screens and up (≥640px) */
-  @media (min-width: 640px) {
-    .hero-background {
-        background-image: url(/Images/Home/Pho-nam-giang-landing-image.avif);
-    }
-  }
-  
+}

@@ -17,7 +17,7 @@ export default async function MenuPage() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <MenuTable menuItems={menuItems} />
     </div>
   );

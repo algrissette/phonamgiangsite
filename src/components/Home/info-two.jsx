@@ -2,14 +2,14 @@ import MenuCard from "./menu-card";
 
 const InfoTwo = () => {
   const featuredItems = [
-    { number: 1, photo: "/pho.jpg", dish: "Pho Bo" },
-    { number: 2, photo: "/banhmi.jpg", dish: "Banh Mi" },
-    { number: 3, photo: "/buncha.jpg", dish: "Bun Cha" },
-    { number: 4, photo: "/goicuon.jpg", dish: "Goi Cuon" },
-    { number: 5, photo: "/comtam.jpg", dish: "Com Tam" },
-    { number: 6, photo: "/chaolong.jpg", dish: "Chao Long" },
-    { number: 7, photo: "/bunbohue.jpg", dish: "Bun Bo Hue" },
-    { number: 8, photo: "/caKho.jpg", dish: "Ca Kho To" },
+    { number: 1, photo: "Images/Home/Popular/phoBo.jpg", dish: "Pho Bo" },
+    { number: 2, photo: "Images/Home/Popular/banhMi.jpg", dish: "Banh Mi" },
+    { number: 3, photo: "Images/Home/Popular/bunCha.jpg", dish: "Bun Cha" },
+    { number: 4, photo: "Images/Home/Popular/goiCuon.jpg", dish: "Goi Cuon" },
+    { number: 5, photo: "Images/Home/Popular/comTam.jpg", dish: "Com Tam" },
+    { number: 6, photo: "Images/Home/Popular/chaoLong.jpg", dish: "Chao Long" },
+    { number: 7, photo: "Images/Home/Popular/bunBoHue.jpg", dish: "Bun Bo Hue" },
+    { number: 8, photo: "Images/Home/Popular/caKhoTo.jpg", dish: "Ca Kho To" },
   ];
 
   return (

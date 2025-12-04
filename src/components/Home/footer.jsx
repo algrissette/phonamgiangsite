@@ -4,16 +4,16 @@ const Footer = () => {
   return (
     <footer className="bg-[#393939] text-[#FFF8E4] py-12 px-6 font-serif">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+
         {/* Brand Section */}
         <div className="space-y-4 flex flex-col items-start">
           {/* Logo */}
-          <img 
-            src="/logo.png" 
-            alt="Pho Nam Giang Logo" 
+          <img
+            src="/Images/Home/pho-nam-giang-logo.avif"
+            alt="Pho Nam Giang Logo"
             className="h-16 w-auto mb-4"
           />
-          
+
           {/* Brand Name and Description */}
           <h2 className="text-2xl font-bold text-[#FFE6A1]">Pho Nam Giang</h2>
           <p className="text-sm">
@@ -22,13 +22,13 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex space-x-4 mt-4">
-            <a href="https://www.instagram.com/phonamgiangg/" target="_blank" rel="noopener noreferrer" className="text-[#FFE6A1] hover:text-white transition">
+            <a href="https://www.instagram.com/phonamgiangg/?hl=en" target="_blank" rel="noopener noreferrer" className="text-[#FFE6A1] hover:text-white transition">
               <FaInstagram size={24} />
             </a>
-            <a href="https://www.facebook.com/namgiangrestaurant" target="_blank" rel="noopener noreferrer" className="text-[#FFE6A1] hover:text-white transition">
+            <a href="https://www.facebook.com/namgiangrestaurant/?locale=vi_VN" target="_blank" rel="noopener noreferrer" className="text-[#FFE6A1] hover:text-white transition">
               <FaFacebook size={24} />
             </a>
-            <a href="https://www.tiktok.com/@phonamgiangg" target="_blank" rel="noopener noreferrer" className="text-[#FFE6A1] hover:text-white transition">
+            <a href="https://www.tiktok.com/discover/pho-nam-giang-franklin-mills-mall" target="_blank" rel="noopener noreferrer" className="text-[#FFE6A1] hover:text-white transition">
               <FaTiktok size={24} />
             </a>
           </div>
@@ -38,10 +38,10 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-[#FFE6A1]">Quick Links</h3>
           <ul className="text-sm space-y-2">
-            <li><a href="/menu" className="hover:text-[#FFE6A1]">Menu</a></li>
-            <li><a href="/about" className="hover:text-[#FFE6A1]">About Us</a></li>
-            <li><a href="/reviews" className="hover:text-[#FFE6A1]">Reviews</a></li>
-            <li><a href="/contact" className="hover:text-[#FFE6A1]">Contact</a></li>
+            <li><a href="/Menu" className="hover:text-[#FFE6A1]">Menu</a></li>
+            <li><a href="/About" className="hover:text-[#FFE6A1]">About Us</a></li>
+            <li><a href="/Reviews" className="hover:text-[#FFE6A1]">Reviews</a></li>
+            <li><a href="/Contact" className="hover:text-[#FFE6A1]">Contact</a></li>
           </ul>
         </div>
 

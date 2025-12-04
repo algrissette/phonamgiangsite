@@ -12,24 +12,24 @@ const InfoFour = () => {
 
           {/* Photo Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-            <img src="/gallery1.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
-            <img src="/gallery2.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 col-span-2" />
-            <img src="/gallery3.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
-            <img src="/gallery4.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
-            <img src="/gallery5.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 col-span-2" />
+            <img src="Images/Home/gallery1.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
+            <img src="Images/Home/gallery2.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 col-span-2" />
+            <img src="Images/Home/gallery3.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
+            <img src="Images/Home/gallery4.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
+            <img src="Images/Home/gallery5.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 col-span-2" />
           </div>
 
           {/* Socials Section */}
           <div className="mt-12 animate-fadeInUp">
             <h3 className="text-2xl font-serif text-[#000000] mb-4">Add us on socials</h3>
             <div className="flex gap-6">
-              <a href="#" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
+              <a href="https://www.instagram.com/phonamgiangg/?hl=en" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
                 <FaInstagram />
               </a>
-              <a href="#" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
+              <a href="https://www.facebook.com/namgiangrestaurant/?locale=vi_VN" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
                 <FaFacebook />
               </a>
-              <a href="#" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
+              <a href="https://www.tiktok.com/discover/pho-nam-giang-franklin-mills-mall" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
                 <FaTiktok />
               </a>
             </div>
@@ -41,9 +41,9 @@ const InfoFour = () => {
           <div className="bg-[#FFFFFF] rounded-3xl shadow-2xl p-10 flex flex-col items-center gap-6 relative overflow-hidden group">
 
             {/* Decorative image */}
-            <img 
-              src="/interior.jpg" 
-              alt="Restaurant Interior" 
+            <img
+              src="Images/Home/InteriorPhoto.webp"
+              alt="Restaurant Interior"
               className="w-full h-48 object-cover rounded-2xl shadow-md mb-6 group-hover:scale-105 transition-transform duration-500"
             />
 
@@ -60,7 +60,7 @@ const InfoFour = () => {
             </ul>
 
             {/* Reviews Button */}
-            <a 
+            <a
               href="/reviews"
               className="mt-8 inline-block bg-[#000000] text-[#FFE6A1] px-8 py-3 rounded-full text-xl font-semibold hover:bg-[#393939] hover:text-[#FFF8E4] transition-all duration-300 shadow-lg"
             >

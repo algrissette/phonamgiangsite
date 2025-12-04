@@ -47,16 +47,18 @@ const Navbar = () => {
       {/* Main Nav */}
       <nav className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 gap-4 sm:gap-0">
         {/* Logo and Name */}
-        <div className="flex items-center gap-3">
-          <Image
-            src="/Images/Home/pho-nam-giang-logo.avif"
-            alt="Pho Nam Giang Logo"
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
-          <span className="text-xl font-semibold">Pho Nam Giang</span>
-        </div>
+        <Link href="/">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/Images/Home/pho-nam-giang-logo.avif"
+              alt="Pho Nam Giang Logo"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+            <span className="text-xl font-semibold">Pho Nam Giang</span>
+          </div>
+        </Link>
 
         {/* Navigation Links */}
         <ul className="flex flex-wrap justify-center sm:justify-end gap-6 text-sm sm:text-base font-medium">

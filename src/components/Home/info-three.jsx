@@ -73,9 +73,9 @@ const InfoThree = () => {
 
         {/* Photo Section */}
         <div className="w-full h-80 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
-          <img 
-            src="/your-photo.jpg" 
-            alt="Pho Nam Giang Restaurant" 
+          <img
+            src="Images/Home/foodSpread.webp"
+            alt="Pho Nam Giang Restaurant"
             className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 ease-in-out"
           />
         </div>

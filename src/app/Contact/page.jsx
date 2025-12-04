@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { MapPin, Mail, Phone, Clock } from "lucide-react";
 import Footer from "@/components/Home/footer";
 import Navbar from "@/components/Home/navbar";
 
@@ -21,21 +21,34 @@ const Contact = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setSubmissionStatus("error");
+      return;
+    }
 
-    // Replace with your actual email sending code, for example with EmailJS or a backend server
+    setIsSubmitting(true);
+    setSubmissionStatus(null);
+
     try {
-      const response = await fetch("/api/send-email", {
+      // Call our API route instead of Web3Forms directly
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      console.log("API Response:", result);
+
+      if (result.success) {
         setSubmissionStatus("success");
         setFormData({
           name: "",
@@ -44,6 +57,11 @@ const Contact = () => {
           message: "",
         });
       } else {
+        console.error("Form submission failed:", result.message);
+        // Check if it's a rate limit error
+        if (result.message && result.message.includes("Rate limited")) {
+          alert("Too many requests. Please try again in a few minutes, or call us directly at (267) 388-5929");
+        }
         setSubmissionStatus("error");
       }
     } catch (error) {
@@ -55,159 +73,224 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      <Navbar/>
-    <div className="bg-tertiary py-20 px-6">
-      {/* Section Header */}
-      <div className="container mx-auto max-w-3xl text-center animate-fadeInUp">
-        <h1 className="text-4xl font-bold dm-serif-text-regular text-secondary mb-4">
-          Get In Touch
-        </h1>
-        <p className="text-secondary text-lg leading-relaxed">
-          Have any questions or comments? Feel free to reach out to us! We'd love to hear from you.
-        </p>
-      </div>
+    <div className="min-h-screen bg-tertiary">
+      <Navbar />
 
-      {/* Contact Form Section */}
-      <div className="container mx-auto max-w-3xl mt-16 animate-fadeIn">
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-4">
-              <div className="flex-1">
-                <label
-                  htmlFor="name"
-                  className="block text-lg text-secondary font-semibold"
+      <div className="py-16 md:py-24 px-6">
+        {/* Section Header */}
+        <div className="container mx-auto max-w-4xl text-center">
+          <h1 className="text-4xl md:text-5xl font-bold dm-serif-text-regular text-secondary mb-6">
+            Get In Touch
+          </h1>
+          <p className="text-secondary text-lg md:text-xl leading-relaxed">
+            Have any questions or comments? We'd love to hear from you! Whether
+            it's about our menu, catering, or just to say hello.
+          </p>
+        </div>
+
+        {/* Contact Info Cards */}
+        <div className="container mx-auto max-w-5xl mt-12 md:mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Location - Franklin Mills */}
+            <div className="bg-white border-2 border-secondary rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="text-white" size={24} />
+              </div>
+              <h3 className="text-lg font-bold text-secondary mb-2">
+                Franklin Mills
+              </h3>
+              <p className="text-secondary/80 text-sm">
+                427 Franklin Mills Circle
+                <br />
+                Philadelphia, PA
+              </p>
+            </div>
+
+            {/* Location - St Vincent */}
+            <div className="bg-white border-2 border-secondary rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="text-white" size={24} />
+              </div>
+              <h3 className="text-lg font-bold text-secondary mb-2">
+                St Vincent St
+              </h3>
+              <p className="text-secondary/80 text-sm">
+                2842 St Vincent Street
+                <br />
+                Philadelphia, PA
+              </p>
+            </div>
+
+            {/* Phone Numbers */}
+            <div className="bg-white border-2 border-secondary rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="text-white" size={24} />
+              </div>
+              <h3 className="text-lg font-bold text-secondary mb-2">Phone</h3>
+              <div className="space-y-1">
+                <a
+                  href="tel:+12673885929"
+                  className="block text-secondary/80 text-sm hover:text-secondary hover:underline"
                 >
-                  Your Name
+                  Franklin Mills: (267) 388-5929
+                </a>
+                <a
+                  href="tel:+12679905286"
+                  className="block text-secondary/80 text-sm hover:text-secondary hover:underline"
+                >
+                  St Vincent: (267) 990-5286
+                </a>
+              </div>
+            </div>
+
+            {/* Hours */}
+            <div className="bg-white border-2 border-secondary rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="text-white" size={24} />
+              </div>
+              <h3 className="text-lg font-bold text-secondary mb-2">Hours</h3>
+              <div className="text-secondary/80 text-sm space-y-1">
+                <p>
+                  Franklin Mills:
+                  <br />
+                  11:30 AM - 9:30 PM
+                </p>
+                <p className="mt-2">
+                  St Vincent:
+                  <br />
+                  10:30 AM - 9:00 PM
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Form Section */}
+        <div className="container mx-auto max-w-3xl mt-16 md:mt-20">
+          <div className="bg-white border-2 border-secondary rounded-2xl p-8 md:p-10 shadow-xl">
+            <h2 className="text-2xl md:text-3xl font-bold dm-serif-text-regular text-secondary mb-6 text-center">
+              Send Us a Message
+            </h2>
+
+            <div className="space-y-6">
+              {/* Name & Email Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-base font-semibold text-secondary mb-2"
+                  >
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full p-4 border-2 border-secondary/30 rounded-xl bg-white text-secondary placeholder:text-secondary/50 focus:outline-none focus:border-secondary transition-colors"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-base font-semibold text-secondary mb-2"
+                  >
+                    Your Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full p-4 border-2 border-secondary/30 rounded-xl bg-white text-secondary placeholder:text-secondary/50 focus:outline-none focus:border-secondary transition-colors"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              {/* Subject */}
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-base font-semibold text-secondary mb-2"
+                >
+                  Subject *
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
                   onChange={handleInputChange}
-                  required
-                  className="w-full p-4 border border-gray-300 rounded-xl bg-white text-secondary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="Enter your name"
+                  className="w-full p-4 border-2 border-secondary/30 rounded-xl bg-white text-secondary placeholder:text-secondary/50 focus:outline-none focus:border-secondary transition-colors"
+                  placeholder="What's this about?"
                 />
               </div>
-              <div className="flex-1">
+
+              {/* Message */}
+              <div>
                 <label
-                  htmlFor="email"
-                  className="block text-lg text-secondary font-semibold"
+                  htmlFor="message"
+                  className="block text-base font-semibold text-secondary mb-2"
                 >
-                  Your Email
+                  Message *
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
                   onChange={handleInputChange}
-                  required
-                  className="w-full p-4 border border-gray-300 rounded-xl bg-white text-secondary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="Enter your email"
-                />
+                  rows={6}
+                  className="w-full p-4 border-2 border-secondary/30 rounded-xl bg-white text-secondary placeholder:text-secondary/50 focus:outline-none focus:border-secondary transition-colors resize-none"
+                  placeholder="Tell us what's on your mind..."
+                ></textarea>
               </div>
-            </div>
 
-            <div>
-              <label
-                htmlFor="subject"
-                className="block text-lg text-secondary font-semibold"
-              >
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleInputChange}
-                required
-                className="w-full p-4 border border-gray-300 rounded-xl bg-white text-secondary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="Enter the subject"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-lg text-secondary font-semibold"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                required
-                rows="6"
-                className="w-full p-4 border border-gray-300 rounded-xl bg-white text-secondary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="Write your message here"
-              ></textarea>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className={`w-full py-4 text-white bg-primary rounded-xl shadow-lg focus:outline-none ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
-            </div>
-
-            {submissionStatus && (
-              <div
-                className={`mt-4 text-center ${submissionStatus === "success" ? "text-green-500" : "text-red-500"}`}
-              >
-                {submissionStatus === "success"
-                  ? "Your message has been sent! We'll get back to you soon."
-                  : "There was an error sending your message. Please try again."}
+              {/* Submit Button */}
+              <div>
+                <button
+                  onClick={handleSubmit}
+                  className={`w-full py-4 text-white text-lg font-semibold bg-secondary rounded-xl shadow-lg hover:bg-secondary/90 focus:outline-none focus:ring-4 focus:ring-secondary/30 transition-all ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
               </div>
-            )}
-          </div>
-        </form>
-      </div>
 
-      {/* Contact Info Section */}
-      <div className="container mx-auto max-w-3xl mt-20 animate-fadeIn">
-        <div className="flex flex-col md:flex-row gap-12">
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-secondary mb-4">
-              Our Location
-            </h2>
-            <p className="text-lg text-secondary">
-              123 Pho Street, Philadelphia, PA 19103
-            </p>
-            <p className="text-lg text-secondary mt-2">
-              We are open daily from 10:00 AM to 9:00 PM.
-            </p>
-          </div>
+              {/* Status Messages */}
+              {submissionStatus === "success" && (
+                <div className="bg-green-50 border-2 border-green-500 text-green-700 px-6 py-4 rounded-xl text-center">
+                  <p className="font-semibold">Message sent successfully!</p>
+                  <p className="text-sm mt-1">
+                    We'll get back to you as soon as possible.
+                  </p>
+                </div>
+              )}
 
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-secondary mb-4">
-              Contact Information
-            </h2>
-            <p className="text-lg text-secondary">
-              Email us at{" "}
-              <a
-                href="mailto:xxx@phonamgiang.com"
-                className="text-primary hover:underline"
-              >
-                xxx@phonamgiang.com
-              </a>
-            </p>
-            <p className="text-lg text-secondary mt-2">
-              Or give us a call at: (123) 456-7890
-            </p>
+              {submissionStatus === "error" && (
+                <div className="bg-red-50 border-2 border-red-500 text-red-700 px-6 py-4 rounded-xl text-center">
+                  <p className="font-semibold">Oops! Something went wrong.</p>
+                  <p className="text-sm mt-1">
+                    Please try again in a few minutes or call us directly at{" "}
+                    <a href="tel:+12673885929" className="underline font-semibold">
+                      (267) 388-5929
+                    </a>
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
+
+        {/* Map Placeholder */}
       </div>
-    </div>
-    <Footer/>
+
+      <Footer />
     </div>
   );
 };

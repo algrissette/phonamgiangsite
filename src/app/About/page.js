@@ -30,7 +30,7 @@ const AboutPage = () => {
           <div className="relative bg-secondary w-full p-8 pb-24 flex flex-col items-center text-white rounded-lg shadow-xl overflow-hidden">
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary opacity-10 rounded-full"></div>
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-gray-300 z-10">
-              <img src="/your-photo.jpg" alt="Pho Nam Giang" className="w-full h-full object-cover" />
+              <img src="/Images/Home/OutsidePhoto1.png" alt="Pho Nam Giang" className="w-full h-full object-cover" />
             </div>
 
             <div className="mt-6 text-center">
@@ -116,7 +116,7 @@ const AboutPage = () => {
 
         {/* Restaurant Image */}
         <div className="flex-1">
-          <img src="/restaurant-photo.jpg" alt="Pho Nam Giang Interior" className="rounded-lg shadow-lg w-full object-cover" />
+          <img src="/Images/Home/OutsidePhoto.jpg" alt="Pho Nam Giang Interior" className="rounded-lg shadow-lg w-full object-cover" />
         </div>
       </div>
 
@@ -165,7 +165,7 @@ const AboutPage = () => {
         </div>
 
         {/* Social Media Links */}
-      <SocialMedia/>
+        <SocialMedia />
       </div>
 
       <Footer />

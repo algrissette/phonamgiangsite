@@ -4,40 +4,41 @@ import { useState, useMemo } from "react";
 
 export default function MenuTable({ menuItems }) {
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("name"); // "name" or "price"
+  const [sortBy, setSortBy] = useState("item"); // "item" or "price"
   const [sortDirection, setSortDirection] = useState("asc"); // "asc" or "desc"
 
   const groupedItems = useMemo(() => {
-    const filtered = [...menuItems].filter((item) =>
-      item.name.toLowerCase().includes(search.toLowerCase())
+    if (!menuItems || !Array.isArray(menuItems)) return {};
+
+    // Filter items based on search
+    const filtered = menuItems.filter((item) =>
+      item.item?.toLowerCase().includes(search.toLowerCase())
     );
 
+    // Sort items
     const sorted = filtered.sort((a, b) => {
       if (sortBy === "price") {
         return sortDirection === "asc" ? a.price - b.price : b.price - a.price;
       } else {
         return sortDirection === "asc"
-          ? a.name.localeCompare(b.name)
-          : b.name.localeCompare(a.name);
+          ? a.item.localeCompare(b.item)
+          : b.item.localeCompare(a.item);
       }
     });
 
     // Group by category
-    const grouped = sorted.reduce((acc, item) => {
+    return sorted.reduce((acc, item) => {
       if (!acc[item.category]) {
         acc[item.category] = [];
       }
       acc[item.category].push(item);
       return acc;
     }, {});
-
-    return grouped;
   }, [menuItems, search, sortBy, sortDirection]);
 
   const toggleSortDirection = () => {
     setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
   };
-  console.log(groupedItems)
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-6">
@@ -61,7 +62,7 @@ export default function MenuTable({ menuItems }) {
             onChange={(e) => setSortBy(e.target.value)}
             className="border border-gray-300 rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-primary transition"
           >
-            <option value="name">Sort by Name</option>
+            <option value="item">Sort by Name</option>
             <option value="price">Sort by Price</option>
           </select>
 
@@ -83,14 +84,14 @@ export default function MenuTable({ menuItems }) {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {groupedItems[category].map((item) => (
+              {groupedItems[category].map((item, index) => (
                 <div
-                  key={item.id}
+                  key={index}
                   className="bg-tertiary p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full"
                 >
                   <div className="flex flex-col gap-2">
                     <h3 className="text-xl dm-serif-text-regular text-secondary leading-snug">
-                      {item.name}
+                      {item.item || "Unnamed Item"}
                     </h3>
 
                     {item.description && (
@@ -102,7 +103,7 @@ export default function MenuTable({ menuItems }) {
 
                   <div className="mt-4 flex justify-between items-center">
                     <span className="text-base font-semibold text-secondary">
-                      ${item.price.toFixed(2)}
+                      ${item.price?.toFixed(2) || "0.00"}
                     </span>
                   </div>
                 </div>
