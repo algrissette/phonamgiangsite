@@ -1,21 +1,28 @@
+import fs from "fs";
+import path from "path";
+import Papa from "papaparse";
 import Navbar from "@/components/Home/navbar";
-import MenuTable from "./menutable";
+import MenuTable from "./menutable"; // adjust the path if needed
 
-async function fetchMenuItems() {
-  // This works both on localhost AND Vercel
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/menu`, {
-    cache: "no-store",
+// Read and parse CSV directly
+async function getMenuItems() {
+  const filePath = path.join(process.cwd(), "public", "menu.csv");
+  const csv = fs.readFileSync(filePath, "utf8");
+
+  const parsed = Papa.parse(csv, {
+    header: true,       // use first row as header
+    skipEmptyLines: true,
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch menu items");
-  }
-
-  return res.json();
+  // Convert price strings to numbers and handle missing values
+  return parsed.data.map(item => ({
+    ...item,
+    price: item.price ? parseFloat(item.price.replace("$", "")) : 0,
+  }));
 }
 
 export default async function MenuPage() {
-  const menuItems = await fetchMenuItems();
+  const menuItems = await getMenuItems();
 
   return (
     <div>
