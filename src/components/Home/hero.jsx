@@ -31,7 +31,7 @@ const Hero = () => {
 
       <div className="absolute bottom-6 right-6">
         <Image
-          src="/Images/Home/Pho-nam-giang-logo.avif"
+          src="/Images/Home/pho-nam-giang-logo.avif"
           alt="Pho Nam Giang Logo"
           width={120}
           height={120}
