@@ -1,15 +1,32 @@
 import Navbar from "@/components/Home/navbar";
-import MenuTable from "./menutable"; // adjust path if needed
+import MenuTable from "./menutable";
 
 async function fetchMenuItems() {
-  const res = await fetch("http://localhost:3000/api/menu" || "https://phonamgiangsite-g8b5-5otkk6blq-alan-grissettes-projects.vercel.app/api/menu", { cache: "no-store" });
+  // Use absolute URL for server-side fetch
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch menu items");
+  try {
+    const res = await fetch(`${baseUrl}/api/menu`, {
+      cache: "no-store",
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (!res.ok) {
+      console.error('Failed to fetch menu items:', res.status);
+      throw new Error("Failed to fetch menu items");
+    }
+
+    const data = await res.json();
+    return data.data || data;
+  } catch (error) {
+    console.error('Error fetching menu:', error);
+    // Return empty array as fallback
+    return [];
   }
-
-  const data = await res.json();
-  return data.data || data; // <-- smart fallback
 }
 
 export default async function MenuPage() {
