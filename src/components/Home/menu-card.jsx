@@ -8,12 +8,12 @@ const MenuCard = ({ number, photo, dish }) => {
       </div>
 
       {/* Top Section with Image and Curve */}
-      <div className="relative w-full h-[42%] bg-black rounded-t-xl overflow-hidden">
+      <div className="relative w-full h-[70%] bg-black rounded-t-xl overflow-hidden">
         <div className="absolute w-full h-6 bg-cream rounded-t-[100%]"></div>
         <img
           src={photo}
           alt={dish}
-          className="absolute top-8 left-1/2 w-20 h-20 transform -translate-x-1/2 object-cover rounded-full border-4 border-white shadow-md z-10 group-hover:scale-110 transition-all duration-300"
+          className="absolute top-2.5 left-1/2 w-40 h-40 transform -translate-x-1/2 object-cover rounded-full border-4 border-white shadow-md z-10 group-hover:scale-110 transition-all duration-300"
         />
       </div>
 
