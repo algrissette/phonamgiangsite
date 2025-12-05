@@ -2,7 +2,7 @@
 
 A modern, responsive restaurant website built with Next.js for Pho Nam Giang, an authentic Vietnamese restaurant located near Franklin Mills Mall in Philadelphia, PA.
 
-![Hero Screenshot](./screenshots/photo1.png)
+![Hero Screenshot](./screenshots/photo1.PNG)
 
 ## 🌟 Features
 
@@ -14,7 +14,7 @@ A modern, responsive restaurant website built with Next.js for Pho Nam Giang, an
 - **Contact Form** - Functional contact form with email integration via Web3Forms
 - **Location Information** - Easy-to-find contact details and hours of operation
 
-![Menu Screenshot](./screenshots/photo2.png)
+![Menu Screenshot](./screenshots/photo2.PNG)
 
 ## 🛠️ Tech Stack
 
@@ -91,7 +91,7 @@ yarn dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-![Contact Page Screenshot](./screenshots/photo3.png)
+![Contact Page Screenshot](./screenshots/photo3.PNG)
 
 ## ⚙️ Configuration
 
@@ -131,7 +131,7 @@ To enable the contact form functionality:
 - Direct contact methods (email, phone)
 - Map integration placeholder
 
-![Reviews Screenshot](./screenshots/photo4.png)
+![Reviews Screenshot](./screenshots/photo4.PNG)
 
 ## 🎨 Design Features
 
@@ -166,13 +166,13 @@ npm run lint
 ## 📸 Screenshots
 
 ### Desktop View
-![Desktop Home](./screenshots/photo5.png)
+![Desktop Home](./screenshots/photo5.PNG)
 
 ### Mobile View
-![Mobile Home](./screenshots/photo6.png)
+![Mobile Home](./screenshots/photo6.PNG)
 
 ### Menu Section
-![Menu Items](./screenshots/photo7.png)
+![Menu Items](./screenshots/photo7.PNG)
 
 ## 🤝 Contributing
 
