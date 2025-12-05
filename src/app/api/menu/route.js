@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import Papa from 'papaparse';
-
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     // Get full path to CSV in public folder
