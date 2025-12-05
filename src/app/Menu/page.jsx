@@ -2,7 +2,7 @@ import Navbar from "@/components/Home/navbar";
 import MenuTable from "./menutable"; // adjust path if needed
 
 async function fetchMenuItems() {
-  const res = await fetch("http://localhost:3000/api/menu", { cache: "no-store" });
+  const res = await fetch("/api/menu", { cache: "no-store" });
 
   if (!res.ok) {
     throw new Error("Failed to fetch menu items");

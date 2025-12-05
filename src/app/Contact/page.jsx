@@ -32,7 +32,7 @@ const Contact = () => {
 
     try {
       // Call our API route instead of Web3Forms directly
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
