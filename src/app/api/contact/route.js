@@ -1,9 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    console.log("heyyyyyyy0", body)
 
     // Validate required fields
     if (!body.name || !body.email || !body.subject || !body.message) {
@@ -13,7 +12,6 @@ export async function POST(request) {
       );
     }
 
-    // Send to Web3Forms
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -21,7 +19,7 @@ export async function POST(request) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        access_key: "0b969a7f-27fb-4e14-8ea5-fa09d863b62f",
+        access_key: process.env.WEB3FORMS_KEY,   // ✅ secure
         name: body.name,
         email: body.email,
         subject: `[Pho Nam Giang] ${body.subject}`,

@@ -18,10 +18,12 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       setSubmissionStatus("error");
       return;
@@ -31,15 +33,13 @@ const Contact = () => {
     setSubmissionStatus(null);
 
     try {
-      // Call our API route instead of Web3Forms directly
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
@@ -47,7 +47,6 @@ const Contact = () => {
       });
 
       const result = await response.json();
-      console.log("API Response:", result);
 
       if (result.success) {
         setSubmissionStatus("success");
@@ -59,14 +58,15 @@ const Contact = () => {
         });
       } else {
         console.error("Form submission failed:", result.message);
-        // Check if it's a rate limit error
-        if (result.message && result.message.includes("Rate limited")) {
-          alert("Too many requests. Please try again in a few minutes, or call us directly at (267) 388-5929");
+
+        if (result.message?.includes("rate")) {
+          alert("Too many requests. Please try again later or call us directly.");
         }
+
         setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error:", error);
       setSubmissionStatus("error");
     } finally {
       setIsSubmitting(false);
