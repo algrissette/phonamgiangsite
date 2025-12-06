@@ -1,14 +1,22 @@
+export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
     const body = await request.json();
 
-    // Validate required fields
     if (!body.name || !body.email || !body.subject || !body.message) {
       return NextResponse.json(
         { success: false, message: "All fields are required" },
         { status: 400 }
+      );
+    }
+
+    if (!process.env.WEB3FORMS_KEY) {
+      console.error("WEB3FORMS_KEY is missing");
+      return NextResponse.json(
+        { success: false, message: "Server config error" },
+        { status: 500 }
       );
     }
 
@@ -19,7 +27,7 @@ export async function POST(request) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        access_key: process.env.WEB3FORMS_KEY,   // ✅ secure
+        access_key: process.env.WEB3FORMS_KEY,
         name: body.name,
         email: body.email,
         subject: `[Pho Nam Giang] ${body.subject}`,
