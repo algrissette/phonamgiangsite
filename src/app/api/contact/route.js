@@ -54,3 +54,11 @@ export async function POST(request) {
     );
   }
 }
+
+export async function GET() {
+  return NextResponse.json({
+    working: true,
+    hasKey: !!process.env.WEB3FORMS_KEY
+  });
+}
+
