@@ -36,7 +36,21 @@ export async function POST(request) {
       }),
     });
 
-    const result = await response.json();
+    // Read raw text for debugging
+    const raw = await response.text();
+    console.log("Web3Forms response:", raw);
+
+    // Try parsing JSON safely
+    let result;
+    try {
+      result = JSON.parse(raw);
+    } catch (e) {
+      console.error("Failed to parse JSON:", e);
+      return NextResponse.json(
+        { success: false, message: "Web3Forms returned invalid JSON" },
+        { status: 500 }
+      );
+    }
 
     if (result.success) {
       return NextResponse.json({ success: true, message: "Message sent successfully!" });
@@ -46,6 +60,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
@@ -61,4 +76,3 @@ export async function GET() {
     hasKey: !!process.env.WEB3FORMS_KEY
   });
 }
-
