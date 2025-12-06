@@ -36,7 +36,7 @@ export async function POST(request) {
         from_name: "Pho Nam Giang Website",
       }),
     });
-
+    console.log("Theeee response", response)
     const result = await response.json();
 
     if (result.success) {
