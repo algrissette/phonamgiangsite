@@ -33,7 +33,7 @@ const Contact = () => {
     setSubmissionStatus(null);
 
     try {
-      const response = await fetch(NEXT_PUBLIC_SITE_URL + "/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
