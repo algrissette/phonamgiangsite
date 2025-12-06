@@ -19,7 +19,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="dm-serif-text-regular min-h-screen bg-primary text-secondary">
+    <div className="dm-serif-text-regular min-h-screen bg-primary text-secondary overflow-x-hidden">
       <Navbar />
       <div className="w-full h-5 bg-primary"></div>
 

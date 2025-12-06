@@ -41,7 +41,7 @@ export default function MenuTable({ menuItems }) {
   };
 
   return (
-    <section className="max-w-7xl mx-auto py-16 px-6">
+    <section className="max-w-7xl mx-auto py-16 px-6 overflow-x-hidden">
       <h1 className="text-5xl dm-serif-text-regular text-black mb-12 text-center animate-fadeInUp">
         Our Menu
       </h1>

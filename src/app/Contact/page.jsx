@@ -32,13 +32,14 @@ const Contact = () => {
 
     try {
       // Call our API route instead of Web3Forms directly
-      const response = await fetch("https://phonamgiangsite-g8b5-5otkk6blq-alan-grissettes-projects.vercel.app/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,

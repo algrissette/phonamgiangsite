@@ -44,7 +44,7 @@ const platformReviews = [
 
 const Reviews = () => {
   return (
-    <div className="min-h-screen bg-tertiary">
+    <div className="min-h-screen bg-tertiary overflow-x-hidden">
       <Navbar />
 
       <div className="py-16 md:py-24 px-6">

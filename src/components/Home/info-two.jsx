@@ -13,7 +13,7 @@ const InfoTwo = () => {
   ];
 
   return (
-    <section className="w-full bg-cream py-12">
+    <section className="w-full bg-cream py-12 overflow-x-hidden">
       {/* 12 column layout container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 

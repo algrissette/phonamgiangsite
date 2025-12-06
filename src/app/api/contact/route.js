@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   try {
     const body = await request.json();
+    console.log("heyyyyyyy0", body)
 
     // Validate required fields
     if (!body.name || !body.email || !body.subject || !body.message) {
@@ -20,7 +21,7 @@ export async function POST(request) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        access_key: process.env.WEB3FORMS_KEY,
+        access_key: "0b969a7f-27fb-4e14-8ea5-fa09d863b62f",
         name: body.name,
         email: body.email,
         subject: `[Pho Nam Giang] ${body.subject}`,

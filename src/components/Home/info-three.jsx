@@ -1,6 +1,6 @@
 const InfoThree = () => {
   return (
-    <section className="container mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12 text-white font-serif relative">
+    <section className="overflow-x-hidden container mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12 text-white font-serif relative">
 
       {/* Left Side - Information Card */}
       <div className="relative w-full md:w-1/2 bg-secondary rounded-3xl p-8 shadow-2xl overflow-visible flex flex-col items-center transition-transform duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border-4 border-[#FDEDC0] hover:scale-[1.02]">

@@ -3,7 +3,7 @@ import "@/Styles/Home.css"; // assuming your CSS handles .hero-background well
 
 const Hero = () => {
   return (
-    <section className="relative hero-background w-full min-h-[600px] flex items-center py-20 text-white dm-serif-text-regular">
+    <section className="relative hero-background w-full min-h-[600px] flex items-center py-20 text-white dm-serif-text-regular overflow-x-hidden">
       <div className="container mx-5 px-6 flex flex-col gap-6 text-center sm:text-left max-w-xl">
         <p className="text-lg sm:text-xl font-light">
           Savor the Soul of Vietnam, One Bowl at a Time
