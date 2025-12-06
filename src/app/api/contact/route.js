@@ -3,8 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
+    console.log(request)
     const body = await request.json();
-
+    console.log(body)
     if (!body.name || !body.email || !body.subject || !body.message) {
       return NextResponse.json(
         { success: false, message: "All fields are required" },
@@ -36,21 +37,7 @@ export async function POST(request) {
       }),
     });
 
-    // Read raw text for debugging
-    const raw = await response.text();
-    console.log("Web3Forms response:", raw);
-
-    // Try parsing JSON safely
-    let result;
-    try {
-      result = JSON.parse(raw);
-    } catch (e) {
-      console.error("Failed to parse JSON:", e);
-      return NextResponse.json(
-        { success: false, message: "Web3Forms returned invalid JSON" },
-        { status: 500 }
-      );
-    }
+    const result = await response.json();
 
     if (result.success) {
       return NextResponse.json({ success: true, message: "Message sent successfully!" });
@@ -60,7 +47,6 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
@@ -76,3 +62,4 @@ export async function GET() {
     hasKey: !!process.env.WEB3FORMS_KEY
   });
 }
+
