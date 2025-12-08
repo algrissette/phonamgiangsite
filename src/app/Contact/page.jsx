@@ -33,12 +33,22 @@ const Contact = () => {
     setSubmissionStatus(null);
 
     try {
-      const response = await fetch("/api/contact", {
+      const encoded = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      const accessKey = encoded ? atob(encoded) : "";
+
+      if (!accessKey) {
+        console.error("Web3Forms key not found");
+        setSubmissionStatus("error");
+        return;
+      }
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          access_key: accessKey,
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
@@ -72,6 +82,7 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-tertiary">
