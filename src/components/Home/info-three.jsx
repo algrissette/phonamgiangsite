@@ -36,7 +36,7 @@ const InfoThree = () => {
 
         {/* About Us Button */}
         <div className="
-  relative mb-25
+  relative mb-50
   lg:absolute lg:mt-0
   lg:top-[60%] lg:right-[-2rem]
   lg:-translate-y-1/2
