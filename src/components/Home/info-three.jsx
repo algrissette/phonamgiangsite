@@ -35,7 +35,20 @@ const InfoThree = () => {
         <div className="h-32"></div>
 
         {/* About Us Button */}
-        <div className="absolute top-[60%] right-[-2rem] transform -translate-y-1/2 bg-[#FDEDC0] px-8 py-4 rounded-lg shadow-2xl hover:bg-opacity-90 hover:scale-110 transition-all duration-300 flex items-center gap-2 animate-fade-in delay-500 border-2 border-white">
+        <div className="
+  relative mb-25
+  lg:absolute lg:mt-0
+  lg:top-[60%] lg:right-[-2rem]
+  lg:-translate-y-1/2
+  mx-auto
+  bg-[#FDEDC0] px-8 py-4 rounded-lg shadow-2xl 
+  hover:bg-opacity-90 hover:scale-110 
+  transition-all duration-300 
+  flex items-center gap-2 
+  animate-fade-in delay-500 
+  border-2 border-white
+">
+
           <p className="text-black font-semibold tracking-wide">See More</p>
           <a href="/about" className="text-black font-semibold tracking-wide underline">
             ABOUT US
