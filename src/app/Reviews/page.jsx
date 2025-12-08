@@ -44,7 +44,7 @@ const platformReviews = [
 
 const Reviews = () => {
   return (
-    <div className="min-h-screen bg-tertiary overflow-x-hidden">
+    <div className="min-h-screen bg-tertiary">
       <Navbar />
 
       <div className="py-16 md:py-24 px-6">
@@ -220,21 +220,7 @@ const Reviews = () => {
             </div>
 
             {/* Instagram Post 2 */}
-            <div className="w-full flex flex-col items-center">
-              <div className="w-full max-w-[540px]">
-                <iframe
-                  src="https://www.instagram.com/p/CxA8G4stNMy/embed"
-                  width="100%"
-                  height="700"
-                  frameBorder="0"
-                  scrolling="no"
-                  allowTransparency="true"
-                  allow="encrypted-media"
-                  title="Instagram Post"
-                  className="rounded-lg border-2 border-secondary shadow-lg"
-                ></iframe>
-              </div>
-            </div>
+
           </div>
         </section>
       </div>
