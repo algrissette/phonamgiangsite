@@ -1,5 +1,5 @@
 # 🍜 Pho Nam Giang - Restaurant Website
-**🌐 Live Site:** [phonamgiangsite.vercel.app]([https://phonamgiangsite.vercel.app/](https://phonamgiangsite.vercel.app/))
+**🌐 Live Site:** [phonamgiangsite.vercel.app](https://phonamgiangsite.vercel.app/)
 
 A modern, responsive restaurant website built with Next.js for Pho Nam Giang, an authentic Vietnamese restaurant located near Franklin Mills Mall in Philadelphia, PA.
 
