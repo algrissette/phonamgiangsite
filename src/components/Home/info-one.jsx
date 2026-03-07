@@ -1,97 +1,121 @@
 import Image from "next/image";
+import Link from "next/link";
+
+const cards = [
+  {
+    icon: "/Images/Home/shrimp.svg",
+    alt: "Shrimp Icon",
+    title: "Grilled & Fresh",
+    text: "House specials with grilled pork, shrimp, and chicken — plus lemongrass options and fresh spring rolls.",
+  },
+  {
+    icon: "/Images/Home/rice.svg",
+    alt: "Rice Icon",
+    title: "Rice & Mains",
+    text: "Chef's specials from beloved grilled short ribs to flavorful rice combos that highlight the best of Vietnamese cuisine.",
+  },
+  {
+    icon: "/Images/Home/cutlery.svg",
+    alt: "Vermicelli Icon",
+    title: "Rice Vermicelli",
+    text: "Perfectly paired with grilled meats and fresh herbs — light, fragrant, and endlessly satisfying.",
+  },
+];
 
 const InfoOne = () => {
   return (
-    <div className="bg-tertiary py-10 overflow-x-hidden">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-16">
+    <section className="bg-[#0e0a06] py-20 overflow-x-hidden">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col lg:flex-row items-center gap-16">
 
-        {/* Cards Section */}
-        <div className="flex-1 flex flex-col items-center">
+        {/* Left: Heading + Cards */}
+        <div className="flex-1 flex flex-col gap-8">
 
-          {/* Heading */}
-          <h2 className=" px-auto dm-serif-text-regular-italic text-3xl font-bold text-[#393939] mb-8 text-center md:text-left w-full">
-            Pho, Rice dishes, Vietnamese hoagies and more!
-          </h2>
+          {/* Section label + heading */}
+          <div className="flex flex-col gap-3 text-center lg:text-left">
+            <p
+              className="text-xs uppercase tracking-[0.3em] text-[rgba(200,140,60)]"
+              style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic" }}
+            >
+              What We Serve
+            </p>
+            <h2
+              className="text-3xl sm:text-4xl font-bold text-[#f5e6c8] leading-snug"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Phở, Rice Dishes,{" "}
+              <span className="italic font-normal text-[#f5c878]">
+                Vietnamese Hoagies & More
+              </span>
+            </h2>
+
+            {/* Ornament */}
+            <div className="flex items-center gap-3 justify-center lg:justify-start">
+              <div className="w-10 h-px bg-[rgba(200,140,60,0.4)]" />
+              <span className="text-[rgba(200,140,60)] text-xs">✦</span>
+              <div className="w-10 h-px bg-[rgba(200,140,60,0.4)]" />
+            </div>
+          </div>
 
           {/* Cards */}
-          <div className="flex flex-wrap justify-center gap-6">
-            {/* Card 1 */}
-            <div className="bg-primary rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] w-[200px] h-72 flex flex-col items-center p-5 text-center relative transition-shadow hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
-              <div className="w-16 h-16 flex items-center justify-center bg-white border-4 border-white rounded-full shadow-sm mb-4">
-                <Image
-                  src="/Images/Home/shrimp.svg"
-                  alt="Shrimp Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-              <p className="text-sm text-gray-700 mb-8">
-                Enjoy our house special with grilled pork, shrimp, and chicken, or try our flavorful lemongrass options and fresh spring rolls.
-              </p>
-              <a href="/Menu">
-                <p className="text-sm text-[#393939] absolute bottom-4 right-4 font-semibold underline hover:text-[#F7EAC6] transition-colors cursor-pointer">
-                  See More
-                </p>
-              </a>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {cards.map(({ icon, alt, title, text }) => (
+              <div
+                key={title}
+                className="group flex-white/[0.0 flex-col gap-4 p-6 rounded-2xl border border-white/30 bg3] hover:bg-[rgba(200,140,60,0.07)] hover:border-[rgba(200,140,60,1)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Icon circle */}
+                <div className="w-12 h-12 my-2 rounded-full border border-black bg-white flex items-center justify-center flex-shrink-0">
+                  <Image
+                    src={icon}
+                    alt={alt}
+                    width={22}
+                    height={22}
+                    className="object-contain bg-white"
 
-            {/* Card 2 */}
-            <div className="bg-primary rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] w-[200px] h-72 flex flex-col items-center p-5 text-center relative transition-shadow hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
-              <div className="w-16 h-16 flex items-center justify-center bg-white border-4 border-white rounded-full shadow-sm mb-4">
-                <Image
-                  src="/Images/Home/rice.svg"
-                  alt="Short Ribs Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-              <p className="text-sm text-gray-700 mb-8">
-                Savor our chef's specials, from the beloved grilled short ribs to a variety of flavorful rice combos that highlight the best of Vietnamese cuisine.
-              </p>
-              <a href="/Menu">
-                <p className="text-sm text-[#393939] absolute bottom-4 right-4 font-semibold underline hover:text-[#F7EAC6] transition-colors  cursor-pointer">
-                  See Here
-                </p>
-              </a>
-            </div>
+                  />
+                </div>
 
-            {/* Card 3 */}
-            <div className="bg-primary rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] w-[200px] h-72 flex flex-col items-center p-5 text-center relative transition-shadow hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
-              <div className="w-16 h-16 flex items-center justify-center bg-white border-4 border-white rounded-full shadow-sm mb-4">
-                <Image
-                  src="/Images/Home/cutlery.svg"
-                  alt="Vermicelli Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-              <p className="text-sm text-gray-700 mb-8">
-                Enjoy our Rice Vermicelli, perfectly paired with your choice of grilled meats, fresh herbs.
-              </p>
-              <a href="/Menu">
-                <p className="text-sm text-[#393939] absolute bottom-4 right-4 font-semibold underline hover:text-[#F7EAC6] transition-colors cursor-pointer">
-                  See Here
+                <h3
+                  className="text-base font-bold text-[#f5e6c8]"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {title}
+                </h3>
+
+                <p
+                  className="text-sm leading-relaxed text-white/90 flex-1 "
+                  style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic" }}
+                >
+                  {text}
                 </p>
-              </a>
-            </div>
+
+                <Link
+                  href="/Menu"
+                  className="text-xs uppercase tracking-widest my-9 text-[rgba(200,140,60)] hover:text-[#f5c878] transition-colors font-medium mt-auto"
+                  style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
+                >
+                  See Menu →
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Side Image */}
-        <div className="md:w-1/3 lg:w-auto flex justify-center">
-          <Image
-            src="/Images/Home/Hero-Image.png"
-            alt="Pho Bowl"
-            width={1000}
-            height={400}
-            className="rounded-3xl object-cover w-full h-auto max-w-md md:max-w-lg"
-          />
+        {/* Right: Image */}
+        <div className="w-full lg:w-auto flex justify-center flex-shrink-0">
+          <div className="rounded-3xl overflow-hidden border border-[rgba(200,140,60,0.2)] shadow-[0_8px_48px_rgba(0,0,0,0.5)] w-full max-w-sm lg:max-w-md">
+            <Image
+              src="/Images/Home/Hero-Image.png"
+              alt="Pho Bowl"
+              width={1000}
+              height={400}
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -10,11 +10,10 @@ async function getMenuItems() {
   const csv = fs.readFileSync(filePath, "utf8");
 
   const parsed = Papa.parse(csv, {
-    header: true,       // use first row as header
+    header: true,
     skipEmptyLines: true,
   });
 
-  // Convert price strings to numbers and handle missing values
   return parsed.data.map(item => ({
     ...item,
     price: item.price ? parseFloat(item.price.replace("$", "")) : 0,

@@ -1,13 +1,39 @@
-/* Show nothing by default */
 .hero-background {
+  position: relative;
   background-color: black;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
 }
 
-/* Show it only on small screens and up (≥640px) */
+/* show image only on ≥640px screens */
 @media (min-width: 640px) {
   .hero-background {
-    background-image: url(/Images/Home/Pho-nam-giang-landing-image.avif);
+    background-image: url("/Images/Home/Pho-nam-giang-landing-image.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
+}
+
+/* dark gradient overlay to hide compression / zoom artifacts */
+.hero-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+
+/* blurred layer to soften pixelation */
+.hero-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/Images/Home/Pho-nam-giang-landing-image.avif");
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(1.05);
+  z-index: -1;
 }

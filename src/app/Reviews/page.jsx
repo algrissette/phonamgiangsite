@@ -2,9 +2,21 @@
 
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { useEffect } from "react";
 import Navbar from "@/components/Home/navbar";
 import Footer from "@/components/Home/footer";
+
+const globalStyles = `
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=Be+Vietnam+Pro:wght@300;400;500&display=swap');
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+`;
 
 const platformReviews = [
   {
@@ -13,7 +25,7 @@ const platformReviews = [
       {
         name: "Alice L.",
         photo: "/Images/Reviews/Alice.jpg",
-        text: "i got the house special pho (pho dac biet) and it did not disappoint. the broth was super flavorful and the bowl was packed with meat. service was fast, and everyone was super friendly! the restaurant was homey and had plenty of seating. honesty, i was surprised that there weren't more customers.",
+        text: "I got the house special pho (pho dac biet) and it did not disappoint. The broth was super flavorful and the bowl was packed with meat. Service was fast, and everyone was super friendly!",
         stars: 5,
       },
     ],
@@ -22,9 +34,9 @@ const platformReviews = [
     platform: "Google",
     reviews: [
       {
-        name: "Caroline L",
+        name: "Caroline L.",
         photo: "/Images/Reviews/Caroline.png",
-        text: "Super yummy rice vermicelli bun marinated grill stuff, pho and shrimp tempura.",
+        text: "Super yummy rice vermicelli bun marinated grill stuff, pho and shrimp tempura. Will definitely be coming back again.",
         stars: 5,
       },
     ],
@@ -35,198 +47,501 @@ const platformReviews = [
       {
         name: "Danielle A.",
         photo: "/Images/Reviews/Danielle.jpg",
-        text: " As for my dish, It was a thing of dreams. Flavorful, salted properly. The rice was fresh. the little veggies on the side almost didn't make it back up I95. All in all this was a great restaurant & well worth the trip.",
+        text: "As for my dish, it was a thing of dreams. Flavorful, salted properly. The rice was fresh. All in all this was a great restaurant & well worth the trip.",
         stars: 5,
       },
     ],
   },
 ];
 
+const featuredBubbles = [
+  {
+    photo: "/Images/Reviews/Michelle.jpg",
+    name: "Michelle",
+    text: "Fried pork dumplings were also good. Really crispy and juicy.",
+  },
+  {
+    photo: "/Images/Reviews/Tamara.jpg",
+    name: "Tamara",
+    text: "The restaurant just opened up in our area — we have been waiting! They did not disappoint!!! The dining area is beautiful and the food was amazing, fresh and delicious.",
+  },
+];
+
+function StarRating({ count }) {
+  return (
+    <div style={{ display: "flex", gap: "3px" }}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          size={16}
+          fill={i < count ? "#f5c878" : "none"}
+          stroke="#f5c878"
+          strokeWidth={2}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", margin: "0 auto" }}>
+
+      <div style={{ width: "60px", height: "1px", background: " rgba(200,140,60,0.5))" }} />
+    </div>
+  );
+}
+
 const Reviews = () => {
   return (
-    <div className="min-h-screen bg-tertiary">
-      <Navbar />
+    <>
+      <style>{globalStyles}</style>
+      <div style={{
+        minHeight: "100vh",
+        background: "#0e0a06",
+        backgroundImage: `
+          radial-gradient(ellipse at 15% 10%, rgba(180,80,20,0.12) 0%, transparent 50%),
+          radial-gradient(ellipse at 85% 85%, rgba(120,40,10,0.1) 0%, transparent 50%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")
+        `,
+        fontFamily: "'Be Vietnam Pro', sans-serif",
+        color: "#f0e6d3",
+      }}>
+        <Navbar />
 
-      <div className="py-16 md:py-24 px-6">
-        {/* Section Header */}
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold dm-serif-text-regular text-secondary mb-6">
-            Read All About Us!
-          </h1>
-          <p className="text-secondary text-lg md:text-xl leading-relaxed">
-            Discover what our customers are saying about <strong>Pho Nam Giang</strong>! From <strong>authentic pho</strong> to <strong>warm, friendly service</strong>, read real reviews from our loyal guests and see why we're a <strong>local favorite</strong> in Philadelphia.
+        {/* ── Hero Header ── */}
+        <div style={{
+          borderBottom: "1px solid rgba(200,140,60,0.15)",
+          padding: "72px 24px 52px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+          animation: "fadeUp 0.7s ease both",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: `repeating-linear-gradient(90deg, rgba(200,140,60,0.025) 0px, rgba(200,140,60,0.025) 1px, transparent 1px, transparent 60px)`,
+            pointerEvents: "none",
+          }} />
+
+          <p style={{
+            fontFamily: "'Crimson Pro', serif",
+            fontStyle: "italic",
+            fontSize: "14px",
+            letterSpacing: "0.35em",
+            color: "rgba(200,140,60)",
+            textTransform: "uppercase",
+            marginBottom: "16px",
+          }}>
+            Pho Nam Giang · Philadelphia
           </p>
+
+          <h1 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "clamp(40px, 7vw, 80px)",
+            fontWeight: 700,
+            color: "#f5e6c8",
+            lineHeight: 1.05,
+            marginBottom: "12px",
+            letterSpacing: "-0.02em",
+          }}>
+            What People Are Saying
+          </h1>
+
+          <p style={{
+            fontFamily: "'Crimson Pro', serif",
+            fontStyle: "italic",
+            fontSize: "clamp(16px, 2vw, 20px)",
+            color: "rgba(200,160,100)",
+            maxWidth: "600px",
+            margin: "0 auto 28px",
+            lineHeight: 1.7,
+          }}>
+            From authentic phở to warm, friendly service — read real reviews from our loyal guests and see why we're a local favorite in Philadelphia.
+          </p>
+
+          <Divider />
         </div>
 
-        {/* Featured Review Bubbles */}
-        <div className="container mx-auto max-w-5xl mt-16 md:mt-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {/* Review Bubble 1 */}
-            <div className="flex items-start gap-4">
-              <Image
-                src="/Images/Reviews/Michelle.jpg"
-                alt="Customer review"
-                width={80}
-                height={80}
-                className="rounded-full border-2 border-secondary shadow-md flex-shrink-0"
-              />
-              <div className="bg-white border-2 border-secondary px-6 py-5 rounded-2xl text-secondary relative shadow-lg">
-                <div className="absolute top-1/2 -left-3 w-0 h-0 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent border-r-[12px] border-r-secondary -translate-y-1/2"></div>
-                <div className="absolute top-1/2 -left-[10px] w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[10px] border-r-white -translate-y-1/2"></div>
-                <p className="text-base md:text-lg leading-relaxed">
-                  Fried pork dumplings were also good. Really <strong> crispy</strong> and <strong> juicy</strong> .
-                </p>
-              </div>
-            </div>
+        {/* ── Featured Bubbles ── */}
+        <section style={{ padding: "72px 24px", maxWidth: "900px", margin: "0 auto" }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "32px",
+          }}>
+            {featuredBubbles.map((bubble, i) => (
+              <div key={i} style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "16px",
+                animation: `fadeUp 0.6s ease both ${i * 0.12}s`,
+              }}>
+                <div style={{ flexShrink: 0 }}>
+                  <Image
+                    src={bubble.photo}
+                    alt={bubble.name}
+                    width={64}
+                    height={64}
+                    style={{
+                      borderRadius: "50%",
+                      border: "2px solid rgba(200,140,60,0.5)",
+                      boxShadow: "0 0 20px rgba(180,80,10,0.25)",
+                    }}
+                  />
+                </div>
 
-            {/* Review Bubble 2 */}
-            <div className="flex items-start gap-4">
-              <Image
-                src="/Images/Reviews/Tamara.jpg"
-                alt="Customer review"
-                width={80}
-                height={80}
-                className="rounded-full border-2 border-secondary shadow-md flex-shrink-0"
-              />
-              <div className="bg-white border-2 border-secondary px-6 py-5 rounded-2xl text-secondary relative shadow-lg">
-                <div className="absolute top-1/2 -left-3 w-0 h-0 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent border-r-[12px] border-r-secondary -translate-y-1/2"></div>
-                <div className="absolute top-1/2 -left-[10px] w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[10px] border-r-white -translate-y-1/2"></div>
-                <p className="text-base md:text-lg leading-relaxed">
-                  The restaurant just opened up in our area, we have been waiting! <strong>They did not disappoint!!!  </strong>The dining area is beautiful and feels very relaxing. The food was amazing, fresh and delicious. I highly recommend <strong> AAAAAAAAA  </strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+                <div style={{ position: "relative" }}>
+                  {/* Tail */}
+                  <div style={{
+                    position: "absolute",
+                    top: "20px",
+                    left: "-8px",
+                    width: 0, height: 0,
+                    borderTop: "8px solid transparent",
+                    borderBottom: "8px solid transparent",
+                    borderRight: "8px solid rgba(200,140,60,0.35)",
+                  }} />
+                  <div style={{
+                    position: "absolute",
+                    top: "21px",
+                    left: "-6px",
+                    width: 0, height: 0,
+                    borderTop: "7px solid transparent",
+                    borderBottom: "7px solid transparent",
+                    borderRight: "7px solid rgba(255,255,255,0.04)",
+                  }} />
 
-        {/* Platform Reviews Grid */}
-        <section className="container mx-auto py-20 md:py-28 px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center dm-serif-text-regular text-secondary mb-16">
-            Reviews Across The Web
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            {platformReviews.map((group) => (
-              <div key={group.platform} className="flex flex-col items-center">
-                {group.reviews.map((review, index) => (
-                  <div key={index} className="flex flex-col items-center w-full max-w-sm">
-                    {/* Speech Bubble */}
-                    <div className="bg-white border-2 border-secondary p-6 rounded-2xl w-full mb-4 relative shadow-lg">
-                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-secondary"></div>
-                      <div className="absolute -bottom-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white"></div>
-                      <p className="text-secondary text-base md:text-lg leading-relaxed">
-                        {review.text}
-                      </p>
-                    </div>
-
-                    {/* Profile Image */}
-                    <Image
-                      src={review.photo}
-                      alt={review.name}
-                      width={70}
-                      height={70}
-                      className="rounded-full border-2 border-secondary shadow-md"
-                    />
-
-                    {/* Name */}
-                    <p className="text-secondary font-semibold mt-3 text-lg">
-                      {review.name}
+                  <div style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(200,140,60,0.3)",
+                    borderRadius: "12px",
+                    padding: "18px 20px",
+                    boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                  }}>
+                    <p style={{
+                      fontFamily: "'Crimson Pro', serif",
+                      fontStyle: "italic",
+                      fontSize: "16px",
+                      color: "rgba(240,220,190)",
+                      lineHeight: 1.7,
+                      margin: "0 0 10px",
+                    }}>
+                      "{bubble.text}"
                     </p>
-
-                    {/* Star Rating */}
-                    <div className="flex gap-1 mt-2">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          size={20}
-                          fill={i < review.stars ? "#FBBF24" : "none"}
-                          stroke="#FBBF24"
-                          strokeWidth={2}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Platform Badge */}
-                    <span className="text-sm font-medium text-secondary/70 mt-2 bg-white px-3 py-1 rounded-full border border-secondary/30">
-                      {group.platform}
+                    <span style={{
+                      fontFamily: "'Be Vietnam Pro', sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      color: "rgba(200,140,60)",
+                    }}>
+                      — {bubble.name}
                     </span>
                   </div>
-                ))}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Featured Press Section */}
-        <section className="container mx-auto py-20 md:py-28 px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center dm-serif-text-regular text-secondary mb-16">
-            Featured In
-          </h2>
+        {/* ── Reviews Across The Web ── */}
+        <section style={{
+          padding: "0 24px 80px",
+          maxWidth: "1100px",
+          margin: "0 auto",
+        }}>
+          <div style={{ textAlign: "center", marginBottom: "52px" }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(28px, 4vw, 42px)",
+              fontWeight: 700,
+              color: "#f5e6c8",
+              marginBottom: "12px",
+              letterSpacing: "-0.01em",
+            }}>
+              Reviews Across The Web
+            </h2>
+            <Divider />
+          </div>
 
-          <div className="max-w-4xl mx-auto">
-            {/* Philadelphia Magazine Feature */}
-            <div className="bg-white border-2 border-secondary rounded-2xl p-8 md:p-10 shadow-xl mb-12">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm">
-                  PRESS
-                </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-secondary dm-serif-text-regular mb-2">
-                    Philadelphia Magazine
-                  </h3>
-                  <p className="text-secondary/70 font-medium">
-                    Best Restaurants in Northeast Philadelphia
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "24px",
+          }}>
+            {platformReviews.map((group, gi) =>
+              group.reviews.map((review, ri) => (
+                <div key={`${gi}-${ri}`} style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  animation: `fadeUp 0.6s ease both ${gi * 0.1}s`,
+                }}>
+                  {/* Speech bubble pointing down */}
+                  <div style={{
+                    position: "relative",
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(200,140,60,0.25)",
+                    borderRadius: "14px",
+                    padding: "24px",
+                    width: "100%",
+                    boxShadow: "0 4px 32px rgba(0,0,0,0.35)",
+                    marginBottom: "20px",
+                  }}>
+                    {/* Down-pointing tail */}
+                    <div style={{
+                      position: "absolute",
+                      bottom: "-9px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      width: 0, height: 0,
+                      borderLeft: "9px solid transparent",
+                      borderRight: "9px solid transparent",
+                      borderTop: "9px solid rgba(200,140,60,0.25)",
+                    }} />
+                    <div style={{
+                      position: "absolute",
+                      bottom: "-7px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      width: 0, height: 0,
+                      borderLeft: "7px solid transparent",
+                      borderRight: "7px solid transparent",
+                      borderTop: "7px solid #161008",
+                    }} />
+
+                    <p style={{
+                      fontFamily: "'Crimson Pro', serif",
+                      fontStyle: "italic",
+                      fontSize: "15px",
+                      color: "rgba(240,220,190)",
+                      lineHeight: 1.75,
+                      margin: 0,
+                    }}>
+                      "{review.text}"
+                    </p>
+                  </div>
+
+                  {/* Avatar */}
+                  <Image
+                    src={review.photo}
+                    alt={review.name}
+                    width={60}
+                    height={60}
+                    style={{
+                      borderRadius: "50%",
+                      border: "2px solid rgba(200,140,60,0.45)",
+                      boxShadow: "0 0 16px rgba(180,80,10,0.2)",
+                      marginBottom: "10px",
+                    }}
+                  />
+
+                  <p style={{
+                    fontFamily: "'Be Vietnam Pro', sans-serif",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    color: "#f5e6c8",
+                    marginBottom: "6px",
+                  }}>
+                    {review.name}
                   </p>
+
+                  <StarRating count={review.stars} />
+
+                  <span style={{
+                    marginTop: "8px",
+                    fontFamily: "'Be Vietnam Pro', sans-serif",
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    color: "rgba(200,140,60)",
+                    background: "rgba(200,140,60,0.08)",
+                    border: "1px solid rgba(200,140,60,0.2)",
+                    borderRadius: "100px",
+                    padding: "3px 12px",
+                    letterSpacing: "0.05em",
+                  }}>
+                    {group.platform}
+                  </span>
                 </div>
-              </div>
-
-              <p className="text-secondary text-lg leading-relaxed mb-6">
-                Pho Nam Giang has been recognized by Philadelphia Magazine as one of the top dining destinations in Northeast Philadelphia, showcasing our commitment to authentic Vietnamese cuisine and exceptional service.
-              </p>
-
-              <a
-                href="https://www.phillymag.com/foobooz/best-restaurants-northeast-philadelphia/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-secondary text-white px-6 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
-              >
-                Read Full Article →
-              </a>
-            </div>
+              ))
+            )}
           </div>
         </section>
 
-        {/* Social Media Section */}
-        <section className="container mx-auto py-20 md:py-28 px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center dm-serif-text-regular text-secondary mb-16">
+        {/* ── Featured In ── */}
+        <section style={{
+          padding: "0 24px 80px",
+          maxWidth: "800px",
+          margin: "0 auto",
+        }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(28px, 4vw, 42px)",
+              fontWeight: 700,
+              color: "#f5e6c8",
+              marginBottom: "12px",
+              letterSpacing: "-0.01em",
+            }}>
+              Featured In
+            </h2>
+            <Divider />
+          </div>
+
+          <div style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(200,140,60,0.25)",
+            borderRadius: "16px",
+            padding: "36px 40px",
+            boxShadow: "0 8px 48px rgba(0,0,0,0.4)",
+            position: "relative",
+            overflow: "hidden",
+          }}>
+            {/* Subtle corner accent */}
+            <div style={{
+              position: "absolute", top: 0, left: 0, right: 0,
+              height: "2px",
+              background: "linear-gradient(to right, transparent, rgba(200,140,60,0.5), transparent)",
+            }} />
+
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", marginBottom: "20px" }}>
+              <div style={{
+                background: "rgba(200,140,60,0.15)",
+                border: "1px solid rgba(200,140,60,0.35)",
+                color: "rgba(200,140,60)",
+                padding: "5px 12px",
+                borderRadius: "6px",
+                fontSize: "11px",
+                fontFamily: "'Be Vietnam Pro', sans-serif",
+                fontWeight: 500,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                flexShrink: 0,
+                marginTop: "4px",
+              }}>
+                Press
+              </div>
+              <div>
+                <h3 style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "22px",
+                  fontWeight: 700,
+                  color: "#f5e6c8",
+                  margin: "0 0 4px",
+                }}>
+                  Philadelphia Magazine
+                </h3>
+                <p style={{
+                  fontFamily: "'Crimson Pro', serif",
+                  fontStyle: "italic",
+                  fontSize: "14px",
+                  color: "rgba(200,140,60)",
+                  margin: 0,
+                }}>
+                  Best Restaurants in Northeast Philadelphia
+                </p>
+              </div>
+            </div>
+
+            <p style={{
+              fontFamily: "'Crimson Pro', serif",
+              fontSize: "16px",
+              color: "rgba(240,220,190)",
+              lineHeight: 1.8,
+              marginBottom: "24px",
+            }}>
+              Pho Nam Giang has been recognized by Philadelphia Magazine as one of the top dining destinations in Northeast Philadelphia, showcasing our commitment to authentic Vietnamese cuisine and exceptional service.
+            </p>
+
+            <a
+              href="https://www.phillymag.com/foobooz/best-restaurants-northeast-philadelphia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                background: "rgba(200,140,60,0.15)",
+                border: "1px solid rgba(200,140,60,0.45)",
+                color: "#f5c878",
+                padding: "10px 22px",
+                borderRadius: "8px",
+                fontFamily: "'Be Vietnam Pro', sans-serif",
+                fontSize: "14px",
+                fontWeight: 500,
+                textDecoration: "none",
+                letterSpacing: "0.02em",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(200,140,60,0.25)"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(200,140,60,0.15)"}
+            >
+              Read Full Article →
+            </a>
+          </div>
+        </section>
+
+        {/* ── See Us In Action ── */}
+        <section style={{
+          padding: "0 24px 100px",
+          maxWidth: "600px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "clamp(28px, 4vw, 42px)",
+            fontWeight: 700,
+            color: "#f5e6c8",
+            marginBottom: "12px",
+            letterSpacing: "-0.01em",
+          }}>
             See Us In Action
           </h2>
+          <div style={{ marginBottom: "44px" }}>
+            <Divider />
+          </div>
 
-          <div className="flex flex-col items-center gap-12 max-w-2xl mx-auto">
-            {/* Instagram Reel 1 */}
-            <div className="w-full flex flex-col items-center">
-              <div className="w-full max-w-[540px]">
-                <iframe
-                  src="https://www.instagram.com/reel/DBBtAs3PLvE/embed"
-                  width="100%"
-                  height="700"
-                  frameBorder="0"
-                  scrolling="no"
-                  allowTransparency="true"
-                  allow="encrypted-media"
-                  title="Instagram Reel"
-                  className="rounded-lg border-2 border-secondary shadow-lg"
-                ></iframe>
-              </div>
-            </div>
-
-            {/* Instagram Post 2 */}
-
+          <div style={{
+            borderRadius: "14px",
+            overflow: "hidden",
+            border: "1px solid rgba(200,140,60,0.25)",
+            boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
+          }}>
+            <iframe
+              src="https://www.instagram.com/reel/DBBtAs3PLvE/embed"
+              width="100%"
+              height="700"
+              frameBorder="0"
+              scrolling="no"
+              allowTransparency="true"
+              allow="encrypted-media"
+              title="Instagram Reel"
+              style={{ display: "block" }}
+            />
           </div>
         </section>
-      </div>
 
-      <Footer />
-    </div>
+        {/* Footer ornament */}
+        <div style={{
+          textAlign: "center",
+          borderTop: "1px solid rgba(200,140,60,0.1)",
+          padding: "32px 24px",
+        }}>
+          <Divider />
+          <p style={{
+            fontFamily: "'Crimson Pro', serif",
+            fontStyle: "italic",
+            fontSize: "13px",
+            color: "rgba(200,140,60)",
+            marginTop: "16px",
+            letterSpacing: "0.05em",
+          }}>
+            All reviews sourced from Google, Yelp & Philadelphia Magazine
+          </p>
+        </div>
+
+        <Footer />
+      </div>
+    </>
   );
 };
 

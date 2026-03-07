@@ -1,76 +1,155 @@
+import Link from "next/link";
 import { FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
+
+const galleryImages = [
+  { src: "Images/Home/gallery1.jpg", span: "" },
+  { src: "Images/Home/gallery2.jpg", span: "col-span-2" },
+  { src: "Images/Home/gallery3.jpg", span: "" },
+  { src: "Images/Home/gallery4.jpg", span: "" },
+  { src: "Images/Home/gallery5.jpg", span: "col-span-2" },
+];
+
+const hours = [
+  { day: "Monday", time: "10:00 AM – 8:00 PM" },
+  { day: "Tuesday", time: "10:00 AM – 8:00 PM" },
+  { day: "Wednesday", time: "10:00 AM – 8:00 PM" },
+  { day: "Thursday", time: "10:00 AM – 9:00 PM" },
+  { day: "Friday", time: "10:00 AM – 10:00 PM" },
+  { day: "Saturday", time: "11:00 AM – 10:00 PM" },
+  { day: "Sunday", time: "11:00 AM – 7:00 PM" },
+];
+
+const socials = [
+  { icon: FaInstagram, href: "https://www.instagram.com/phonamgiangg/?hl=en", label: "Instagram" },
+  { icon: FaFacebook, href: "https://www.facebook.com/namgiangrestaurant/?locale=vi_VN", label: "Facebook" },
+  { icon: FaTiktok, href: "https://www.tiktok.com/discover/pho-nam-giang-franklin-mills-mall", label: "TikTok" },
+];
 
 const InfoFour = () => {
   return (
-    <section className="w-full bg-[#FFF8E4] py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-16">
+    <section className="bg-[#0e0a06] py-20 overflow-x-hidden">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col lg:flex-row gap-12">
 
-        {/* LEFT SIDE */}
-        <div className="flex-1 animate-fadeIn">
-          {/* Gallery Header */}
-          <h2 className="text-4xl font-serif text-[#000000] mb-6">Gallery</h2>
+        {/* ── LEFT: Gallery + Socials ── */}
+        <div className="flex-1 flex flex-col gap-8">
 
-          {/* Photo Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-            <img src="Images/Home/gallery1.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
-            <img src="Images/Home/gallery2.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 col-span-2" />
-            <img src="Images/Home/gallery3.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
-            <img src="Images/Home/gallery4.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300" />
-            <img src="Images/Home/gallery5.jpg" alt="Gallery item" className="rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 col-span-2" />
+          {/* Heading */}
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-xs uppercase tracking-[0.3em] text-[rgba(200,140,60)]"
+              style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic" }}
+            >
+              From Our Kitchen
+            </p>
+            <h2
+              className="text-3xl sm:text-4xl font-bold text-[#f5e6c8] leading-snug"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Gallery
+            </h2>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-px bg-[rgba(200,140,60,0.4)]" />
+              <span className="text-[rgba(200,140,60,0.4)] text-xs">✦</span>
+              <div className="w-10 h-px bg-[rgba(200,140,60,0.4)]" />
+            </div>
           </div>
 
-          {/* Socials Section */}
-          <div className="mt-12 animate-fadeInUp">
-            <h3 className="text-2xl font-serif text-[#000000] mb-4">Add us on socials</h3>
-            <div className="flex gap-6">
-              <a href="https://www.instagram.com/phonamgiangg/?hl=en" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
-                <FaInstagram />
-              </a>
-              <a href="https://www.facebook.com/namgiangrestaurant/?locale=vi_VN" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
-                <FaFacebook />
-              </a>
-              <a href="https://www.tiktok.com/discover/pho-nam-giang-franklin-mills-mall" className="text-[#393939] hover:text-[#FFE6A1] text-3xl transition-all duration-300">
-                <FaTiktok />
-              </a>
+          {/* Photo grid */}
+          <div className="grid grid-cols-3 gap-3">
+            {galleryImages.map(({ src, span }, i) => (
+              <div
+                key={i}
+                className={`${span} rounded-xl overflow-hidden border border-[rgba(200,140,60,.5)] shadow-[0_4px_20px_rgba(0,0,0,0.4)]`}
+              >
+                <img
+                  src={src}
+                  alt={`Gallery photo ${i + 1}`}
+                  className="w-full h-40 object-cover hover:scale-105 transition-transform duration-500 ease-in-out"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Socials */}
+          <div className="flex flex-col gap-4 pt-2">
+            <p
+              className="text-xs uppercase tracking-[0.25em] text-[rgba(200,140,60)]"
+              style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
+            >
+              Follow Us
+            </p>
+            <div className="flex gap-4">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-11 h-11 rounded-full border border-[rgba(200,140,60)] bg-white/[0.03] flex items-center justify-center text-[rgba(200,140,60)] hover:text-[#f5c878] hover:border-[rgba(200,140,60,0.55)] hover:bg-[rgba(200,140,60,0.1)] transition-all duration-300 text-lg"
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="flex-1 animate-fadeInUp">
-          <div className="bg-[#FFFFFF] rounded-3xl shadow-2xl p-10 flex flex-col items-center gap-6 relative overflow-hidden group">
+        {/* ── RIGHT: Hours + Interior + CTA ── */}
+        <div className="w-full lg:w-[42%] flex flex-col gap-0 rounded-2xl overflow-hidden border border-[rgba(200,140,60)] shadow-[0_8px_48px_rgba(0,0,0,0.5)]">
 
-            {/* Decorative image */}
+          {/* Interior photo */}
+          <div className="h-52 overflow-hidden">
             <img
               src="Images/Home/InteriorPhoto.webp"
               alt="Restaurant Interior"
-              className="w-full h-48 object-cover rounded-2xl shadow-md mb-6 group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
             />
+          </div>
 
-            {/* Hours */}
-            <h3 className="text-3xl font-serif text-[#000000] mb-4">Hours of Operation</h3>
-            <ul className="text-lg text-[#393939] font-light space-y-2 text-center">
-              <li>Monday: 10am - 8pm</li>
-              <li>Tuesday: 10am - 8pm</li>
-              <li>Wednesday: 10am - 8pm</li>
-              <li>Thursday: 10am - 9pm</li>
-              <li>Friday: 10am - 10pm</li>
-              <li>Saturday: 11am - 10pm</li>
-              <li>Sunday: 11am - 7pm</li>
-            </ul>
+          {/* Hours */}
+          <div className="flex flex-col gap-5 p-7 bg-white/[0.025]">
+            <div className="flex flex-col gap-1">
+              <p
+                className="text-xs uppercase tracking-[0.25em] text-[rgba(200,140,60)]"
+                style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
+              >
+                We're Open
+              </p>
+              <h3
+                className="text-2xl font-bold text-[#f5e6c8]"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Hours of Operation
+              </h3>
+            </div>
 
-            {/* Reviews Button */}
-            <a
-              href="/reviews"
-              className="mt-8 inline-block bg-[#000000] text-[#FFE6A1] px-8 py-3 rounded-full text-xl font-semibold hover:bg-[#393939] hover:text-[#FFF8E4] transition-all duration-300 shadow-lg"
+            <div className="flex flex-col divide-y divide-[rgba(200,140,60)]">
+              {hours.map(({ day, time }) => (
+                <div key={day} className="flex justify-between items-center py-2.5">
+                  <span
+                    className="text-sm font-medium text-[#f5e6c8]"
+                    style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
+                  >
+                    {day}
+                  </span>
+                  <span
+                    className="text-sm italic text-[rgba(200,140,60)]"
+                    style={{ fontFamily: "'Crimson Pro', serif" }}
+                  >
+                    {time}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <Link
+              href="/Reviews"
+              className="w-full text-center py-3.5 text-xs uppercase tracking-widest font-medium text-[#f5c878] border border-[rgba(200,140,60,0.45)] rounded-lg bg-[rgba(200,140,60,0.1)] hover:bg-[rgba(200,140,60,0.22)] transition-colors"
+              style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
             >
-              See Reviews
-            </a>
-
-            {/* Cute floating decorations */}
-            <div className="absolute -top-10 -left-10 w-24 h-24 bg-[#FFE6A1] rounded-full blur-2xl opacity-60"></div>
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-[#FFE6A1] rounded-full blur-3xl opacity-50"></div>
-
+              See Reviews →
+            </Link>
           </div>
         </div>
 
