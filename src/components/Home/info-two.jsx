@@ -37,7 +37,7 @@ const InfoTwo = () => {
         {/* Call to Action */}
         <div className="mt-12 text-center">
           <a
-            href="/menu"
+            href="/Menu"
             className="inline-block text-xl font-semibold text-black underline underline-offset-4 hover:text-amber-100 transition-all"
           >
             See Full Menu
